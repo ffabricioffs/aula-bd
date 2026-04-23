@@ -23,4 +23,8 @@ public class AlunoService {
         return alunoDAO.listarAlunos();
     }
 
+    public void atualizarAluno(Aluno novo, String uuid){
+        alunoDAO.atualizarAluno(novo, uuid);
+    }
+
 }

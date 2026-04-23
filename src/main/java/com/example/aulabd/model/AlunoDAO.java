@@ -34,6 +34,16 @@ public class AlunoDAO {
 		jdbc.update(sql, obj);
 	}
 
+	public void atualizarAluno(Aluno novo, String uuid){
+		String sql = "UPDATE aluno " + 
+			"SET nome = ?, cpf = ? WHERE id = ?::uuid";
+		Object[] obj = new Object[3];
+		obj[0] = novo.getNome();
+		obj[1] = novo.getCpf();
+		obj[2] = uuid;
+		jdbc.update(sql,obj);
+	}
+
 	public Aluno mostrarAluno(String uuid){
 		String sql = "SELECT * FROM aluno where id=?::uuid";
 		return Aluno.converter(jdbc.queryForMap(sql,uuid));

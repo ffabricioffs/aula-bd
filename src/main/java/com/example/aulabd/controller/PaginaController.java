@@ -59,4 +59,22 @@ public class PaginaController {
 		return "listaraluno";
 	}
 
+	@GetMapping("/aluno/{id}/editar")
+	public String formAtualizar(@PathVariable("id") String uuid, Model model) {
+		AlunoService cdao = context.getBean(AlunoService.class);
+		Aluno alunoId = cdao.mostrarAluno(uuid);
+		model.addAttribute("aluno",alunoId);
+		model.addAttribute("id",uuid);
+		return "formupdaluno";
+	}
+
+	@PostMapping("/aluno/{id}/editar")
+	public String atualizararAluno(@PathVariable("id") String id, 
+			                       Model model,
+			                       @ModelAttribute Aluno cli) {
+		AlunoService cdao = context.getBean(AlunoService.class);
+		cdao.atualizarAluno(cli,id);
+		return "redirect:/listar";
+	}
+
 }

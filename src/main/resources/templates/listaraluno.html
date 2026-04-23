@@ -11,6 +11,7 @@
                 <th>ID</th>
                 <th>NOME</th>
                 <th>CPF</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -18,6 +19,9 @@
             	<td th:text="${aluno.id}"></td>
             	<td th:text="${aluno.nome}"></td>
             	<td th:text="${aluno.cpf}"></td>
+                <td>
+                    <a th:href="@{'/aluno/' + ${aluno.id} + '/editar'}">Editar</a>
+                </td>
             </tr>
         </tbody>
     </table>
