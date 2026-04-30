@@ -10,3 +10,9 @@ CREATE TABLE IF NOT EXISTS disciplina(
     sigla  VARCHAR(7)  NOT NULL 
 );
 
+CREATE TABLE IF NOT EXISTS matricula (
+    aluno_id UUID REFERENCES aluno(id) ON DELETE CASCADE,
+    disciplina_id UUID REFERENCES disciplina(id) ON DELETE CASCADE,
+    data_matricula DATE DEFAULT CURRENT_DATE,
+    PRIMARY KEY (aluno_id, disciplina_id)
+);
