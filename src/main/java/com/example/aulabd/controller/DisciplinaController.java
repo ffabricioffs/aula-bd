@@ -40,7 +40,7 @@ public class DisciplinaController {
 		DisciplinaService cs = context.getBean(DisciplinaService.class);
 		ArrayList<Disciplina> disciplinas = (ArrayList<Disciplina>) cs.listarDisciplinas();
 		model.addAttribute("disciplinas",disciplinas);
-		return "listardisciplinas";
+		return "listardisciplina";
 	}
 
 	
