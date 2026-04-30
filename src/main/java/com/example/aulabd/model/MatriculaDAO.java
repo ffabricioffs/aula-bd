@@ -1,7 +1,5 @@
 package com.example.aulabd.model;
 
-import java.util.ArrayList;
-
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import jakarta.annotation.PostConstruct;
 
 @Repository
-public class DisciplinaDAO {
+public class MatriculaDAO {
 
     @Autowired
 	DataSource dataSource;
