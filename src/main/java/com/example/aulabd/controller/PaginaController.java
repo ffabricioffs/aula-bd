@@ -77,4 +77,12 @@ public class PaginaController {
 		return "redirect:/listar";
 	}
 
+	@PostMapping("/aluno/{id}/deletar")
+	public String deletarAluno(@PathVariable("id") String id, 
+			                       Model model) {
+		AlunoService cdao = context.getBean(AlunoService.class);
+		cdao.deletarAluno(id);
+		return "redirect:/listar";
+	}
+
 }

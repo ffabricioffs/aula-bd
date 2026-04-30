@@ -12,6 +12,7 @@
                 <th>NOME</th>
                 <th>CPF</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,11 @@
             	<td th:text="${aluno.cpf}"></td>
                 <td>
                     <a th:href="@{'/aluno/' + ${aluno.id} + '/editar'}">Editar</a>
+                </td>
+                <td>
+                    <form th:action="@{'/aluno/' + ${aluno.id} + '/deletar'}" method="post">
+                        <input type="submit" value="Deletar">
+                    </form>
                 </td>
             </tr>
         </tbody>

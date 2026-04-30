@@ -27,4 +27,8 @@ public class AlunoService {
         alunoDAO.atualizarAluno(novo, uuid);
     }
 
+    public void deletarAluno(String uuid){
+        alunoDAO.deletarAluno(uuid);        
+    }
+
 }

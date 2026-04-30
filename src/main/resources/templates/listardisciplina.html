@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Disciplinas Cadastradas</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOME</th>
+                <th>SIGLA</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="disciplina : ${disciplinas}">
+            	<td th:text="${disciplina.id}"></td>
+            	<td th:text="${disciplina.nome}"></td>
+            	<td th:text="${disciplina.sigla}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

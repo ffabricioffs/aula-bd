@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastro de Disciplina</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <form action="#" th:action="@{/disciplina/cadastrar}" method=post th:object="${disciplina}">
+    	Nome: <input type="text" th:field="*{nome}"><br>
+    	Sigla: <input type="text" th:field="*{sigla}">
+    	<input type="submit" value="Cadastrar">
+    </form>
+</body>
+</html>

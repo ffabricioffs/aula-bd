@@ -44,6 +44,11 @@ public class AlunoDAO {
 		jdbc.update(sql,obj);
 	}
 
+	public void deletarAluno(String uuid){
+		String sql = "DELETE FROM aluno where id = ?::uuid";
+		jdbc.update(sql,uuid);
+	}
+
 	public Aluno mostrarAluno(String uuid){
 		String sql = "SELECT * FROM aluno where id=?::uuid";
 		return Aluno.converter(jdbc.queryForMap(sql,uuid));
