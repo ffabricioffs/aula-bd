@@ -16,6 +16,7 @@ import com.example.aulabd.model.Aluno;
 import com.example.aulabd.model.AlunoService;
 import com.example.aulabd.model.Disciplina;
 import com.example.aulabd.model.DisciplinaService;
+import com.example.aulabd.model.Matricula;
 
 @Controller
 public class PaginaController {
@@ -97,7 +98,7 @@ public class PaginaController {
 		return "matricula";						
 	} 
 
-	@GetMapping("/matricula/{id}/disciplina/{did}")
+	@PostMapping("/matricula/{id}/disciplina/{did}")
 	public String matricular(@PathVariable("id") String alunoid,
 							 @PathVariable("did") String disciplinaid
 			                 ){
