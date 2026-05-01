@@ -23,7 +23,7 @@ public class MatriculaDAO {
 	
 	public void matricular(Matricula mat) {
 		String sql = "INSERT INTO matricula(aluno_id,disciplina_id)" +
-	                 " VALUES (?,?)";
+	                 " VALUES (?::uuid,?::uuid)";
 		Object[] obj = new Object[2];
 		//primeiro ?
 		obj[0] = mat.getAlunoId();
