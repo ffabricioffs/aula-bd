@@ -11,9 +11,9 @@ public class Matricula {
 
     public Matricula(){}
 
-    public Matricula(String alunoId, LocalDate dataMatricula, String disciplinaId) {
+    public Matricula(String alunoId, String disciplinaId) {
         this.alunoId = alunoId;
-        this.dataMatricula = dataMatricula;
+        this.dataMatricula = LocalDate.now();
         this.disciplinaId = disciplinaId;
     }
 

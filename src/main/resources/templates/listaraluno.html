@@ -17,7 +17,9 @@
         </thead>
         <tbody>
             <tr th:each="aluno : ${alunos}">
-            	<td th:text="${aluno.id}"></td>
+            	<td>
+                    <a th:text="${aluno.id}" th:href="@{'/matricula/' + ${aluno.id}}"></a>
+                </td>
             	<td th:text="${aluno.nome}"></td>
             	<td th:text="${aluno.cpf}"></td>
                 <td>

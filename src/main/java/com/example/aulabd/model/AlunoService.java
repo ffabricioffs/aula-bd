@@ -11,6 +11,9 @@ public class AlunoService {
     @Autowired
     AlunoDAO alunoDAO;
 
+    @Autowired
+    MatriculaDAO matriculaDAO;
+
     public void inserirAluno(Aluno aluno){
         alunoDAO.inserirAluno(aluno);
     }
@@ -29,6 +32,14 @@ public class AlunoService {
 
     public void deletarAluno(String uuid){
         alunoDAO.deletarAluno(uuid);        
+    }
+
+    public ArrayList<Disciplina> listarMatriculadas(String uuidAluno){
+        return alunoDAO.listarMatriculadas(uuidAluno);
+    }
+
+    public void matricular(Matricula mat){
+        matriculaDAO.matricular(mat);
     }
 
 }

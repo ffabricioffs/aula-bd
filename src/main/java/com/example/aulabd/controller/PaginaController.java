@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.aulabd.model.Aluno;
 import com.example.aulabd.model.AlunoService;
+import com.example.aulabd.model.Disciplina;
+import com.example.aulabd.model.DisciplinaService;
 
 @Controller
 public class PaginaController {
@@ -83,6 +85,25 @@ public class PaginaController {
 		AlunoService cdao = context.getBean(AlunoService.class);
 		cdao.deletarAluno(id);
 		return "redirect:/listar";
+	}
+
+	@GetMapping("/matricula/{id}")
+	public String matricularAluno(@PathVariable("id") String id, 
+			                       Model model){
+		model.addAttribute("alunoid",id);
+		DisciplinaService cs = context.getBean(DisciplinaService.class);
+		ArrayList<Disciplina> disciplinas = (ArrayList<Disciplina>) cs.listarDisciplinas();
+		model.addAttribute("disciplinas",disciplinas);
+		return "matricula";						
+	} 
+
+	@GetMapping("/matricula/{id}/disciplina/{did}")
+	public String matricular(@PathVariable("id") String alunoid,
+							 @PathVariable("did") String disciplinaid
+			                 ){
+		AlunoService ms = context.getBean(AlunoService.class);
+		ms.matricular(new Matricula(alunoid,disciplinaid));						
+		return "sucesso";
 	}
 
 }

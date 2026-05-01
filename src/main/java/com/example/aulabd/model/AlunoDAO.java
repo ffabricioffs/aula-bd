@@ -59,4 +59,12 @@ public class AlunoDAO {
 		String sql = "SELECT * FROM aluno";
 		return Aluno.converterTodos(jdbc.queryForList(sql));
 	}
+
+	public ArrayList<Disciplina> listarMatriculadas(String uuidAluno){
+		String sql = "SELECT * FROM disciplina" + 
+		             "INNER JOIN matricula ON disciplina.id = matricula.disciplina_id" + 
+					 "INNER JOIN aluno ON disciplina.aluno_id = aluno.id" +
+					 "WHERE aluno.id = ?";
+		return Disciplina.converterTodos(jdbc.queryForList(sql));
+	}
 }
