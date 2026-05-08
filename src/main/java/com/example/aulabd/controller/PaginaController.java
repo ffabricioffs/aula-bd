@@ -41,6 +41,8 @@ public class PaginaController {
         //AlunoService eh feito via autowired
 		AlunoService cs = context.getBean(AlunoService.class);
 		cs.inserirAluno(aluno);
+		String uuid = cs.obterUUID(aluno.getCpf());
+		cs.inserirPerfil(uuid);
 		return "sucesso";
 	}
 

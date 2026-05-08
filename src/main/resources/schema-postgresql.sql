@@ -16,3 +16,24 @@ CREATE TABLE IF NOT EXISTS matricula (
     data_matricula DATE DEFAULT CURRENT_DATE,
     PRIMARY KEY (aluno_id, disciplina_id)
 );
+
+ALTER TABLE aluno ADD COLUMN IF NOT EXISTS password VARCHAR(100);
+ 
+CREATE TABLE IF NOT EXISTS perfil (
+ alunoid UUID NOT NULL,
+ cargo VARCHAR(50) NOT NULL,
+ CONSTRAINT fk_authorities_users
+     FOREIGN KEY(alunoid) REFERENCES aluno(id)
+);
+
+ALTER TABLE perfil
+ADD COLUMN IF NOT EXISTS id serial PRIMARY KEY;
+
+ALTER TABLE perfil DROP CONSTRAINT IF EXISTS perfil_unique;
+
+ALTER TABLE perfil
+ADD CONSTRAINT perfil_unique UNIQUE (alunoid);
+
+INSERT INTO perfil(alunoid,cargo) 
+VALUES('4ac27256-4728-4020-be4b-eb5ac03b272c','admin')
+ON CONFLICT(alunoid) DO NOTHING;

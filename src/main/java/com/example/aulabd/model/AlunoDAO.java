@@ -1,11 +1,16 @@
 package com.example.aulabd.model;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.UUID;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import jakarta.annotation.PostConstruct;
@@ -22,16 +27,41 @@ public class AlunoDAO {
 	private void initialize() {
 		jdbc = new JdbcTemplate(dataSource);
 	}
+
+	@Bean
+  	public PasswordEncoder passwordEncoder() {
+      return new BCryptPasswordEncoder();
+  	}
 	
 	public void inserirAluno(Aluno aluno) {
-		String sql = "INSERT INTO aluno(nome,cpf)" +
-	                 " VALUES (?,?)";
-		Object[] obj = new Object[2];
+		String sql = "INSERT INTO aluno(nome,cpf,password)" +
+	                 " VALUES (?,?,?)";
+		Object[] obj = new Object[3];
 		//primeiro ?
 		obj[0] = aluno.getNome();
 		//segundo ?
 		obj[1] = aluno.getCpf();
+		PasswordEncoder pe = passwordEncoder();
+		//terceiro ?
+		obj[2] = pe.encode(aluno.getPassword());
 		jdbc.update(sql, obj);
+	}
+
+	public void inserirPerfil(String uuid){
+		Aluno a = mostrarAluno(uuid);
+		String sql = "INSERT INTO perfil(alunoid,cargo)" +
+	                 " VALUES (?,?)";
+		Object[] obj = new Object[2];
+		obj[0] = a.getId();
+		obj[1] = "aluno";
+		jdbc.update(sql, obj);
+	}
+
+	public String obterUUID(String cpf){
+		String sql = "SELECT id FROM aluno where cpf=?";
+		Map<String,Object> mp = jdbc.queryForMap(sql,cpf);
+		UUID uuid = (UUID) mp.get("id");
+		return uuid.toString();
 	}
 
 	public void atualizarAluno(Aluno novo, String uuid){

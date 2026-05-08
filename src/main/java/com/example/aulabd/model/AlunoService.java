@@ -42,4 +42,12 @@ public class AlunoService {
         matriculaDAO.matricular(mat);
     }
 
+    public void inserirPerfil(String uuid){
+        alunoDAO.inserirPerfil(uuid);
+    }
+
+    public String obterUUID(String cpf){
+        return alunoDAO.obterUUID(cpf);
+    }
+
 }
